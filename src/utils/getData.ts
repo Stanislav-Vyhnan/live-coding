@@ -1,6 +1,6 @@
 import { Candidate } from '@/interfaces/Candidates';
 
-export const getData = async (searchQuery: string): Promise<any> => {
+export const getData = async (searchQuery: string): Promise<Candidate[]> => {
   const filterData = (candidates: Candidate[]) => {
     return candidates.filter((candidate) => {
       const candidateName = `${candidate.firstName} ${candidate.lastName}`;

@@ -4,17 +4,22 @@ import CandidateLi from './Candidate';
 
 type Props = {
   candidates: Candidate[] | null;
+  onAdd: (firstName: string) => void;
 };
 
-const CandidateList = ({ candidates }: Props) => {
+const CandidateList = ({ candidates, onAdd }: Props) => {
   if (!candidates) {
     return <span>Loading....</span>;
   }
 
   return (
     <ul className="mt-2">
-      {candidates.map((candidate, index) => (
-        <CandidateLi key={index} candidate={candidate} />
+      {candidates.map((candidate) => (
+        <CandidateLi
+          key={candidate.firstName}
+          candidate={candidate}
+          onAdd={onAdd}
+        />
       ))}
     </ul>
   );
