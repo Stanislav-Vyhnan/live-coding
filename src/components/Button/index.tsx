@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 type Props = {
   onClick: () => void;
-  text: string;
+  className?: string;
 };
 
-const Button = ({ onClick, text }: Props) => {
-  return <button onClick={onClick}>{text}</button>;
+const Button = ({ children, onClick, className }: PropsWithChildren<Props>) => {
+  return (
+    <button onClick={onClick} className={className}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

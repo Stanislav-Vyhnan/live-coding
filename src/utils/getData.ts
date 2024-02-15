@@ -8,7 +8,7 @@ export const getData = async (searchQuery: string): Promise<Candidate[]> => {
     });
   };
 
-  const data: Candidate[] = await new Promise((resolve, rejects) => {
+  const data: Candidate[] = await new Promise((resolve) => {
     setTimeout(() => {
       resolve(candidates);
     }, 250);

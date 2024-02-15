@@ -1,38 +1,24 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 type Props = {
-  onFinish: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
+  className: string;
+  placeholder: string;
 };
 
-const debouncedTime = 150;
-
-const Input = ({ onFinish }: Props) => {
-  const [value, setValue] = useState('');
-
-  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const Input = ({ value, onChange, className, placeholder }: Props) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const currentValue = event.target.value;
-    const currentTimeoutId = timeoutIdRef.current;
-
-    setValue(currentValue);
-
-    if (currentTimeoutId) {
-      window.clearTimeout(currentTimeoutId);
-    }
-
-    const timeoutId = setTimeout(() => {
-      onFinish(currentValue);
-    }, debouncedTime);
-
-    timeoutIdRef.current = timeoutId;
+    onChange(currentValue);
   };
 
   return (
     <input
-      className="border-2 border-sky-500 p-2"
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
+      className={`${className} text-sm text-grey-600`}
+      placeholder={placeholder}
     />
   );
 };
